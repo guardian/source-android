@@ -1,11 +1,11 @@
 name: Test
 
 on:
-  # pull_request:
-  # merge_group:
-  #   types: [checks_requested]
-  # push:
-  #   branches: [ main ]
+  pull_request:
+  merge_group:
+    types: [checks_requested]
+  push:
+    branches: [ main ]
   workflow_dispatch:
 
 concurrency:
@@ -54,6 +54,7 @@ jobs:
       - name: Run tests
         id: screenshot-tests
         run: |
+          cd android
           ./gradlew verifyPaparazziDebug --continue --quiet
 
       - name: Create companion branch and comment content
